@@ -1,0 +1,1 @@
+cmd_/home/demo/test10/proc_example/example1.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -z noexecstack   --build-id  -T ./scripts/module-common.lds -o /home/demo/test10/proc_example/example1.ko /home/demo/test10/proc_example/example1.o /home/demo/test10/proc_example/example1.mod.o;  true

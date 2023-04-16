@@ -17,11 +17,22 @@ static ssize_t mywrite(struct file *file, const char __user *ubuf,size_t count, 
     int num,c;
 	char buf[BUFSIZE];
     memset(buf,0,100);
+	if(*ppos>0)
+		printk( KERN_INFO "ppos error");
+	if(count > BUFSIZE)
+		printk( KERN_INFO "count error");
 	if(*ppos > 0 || count > BUFSIZE)
+	{
 		return -EFAULT;
+	}
+		
     memset(mess,0,100);
 	if(copy_from_user(mess, ubuf, count))
+	{
+		printk( KERN_INFO "copy_from_user error");
 		return -EFAULT;
+	}
+		
     
 	//num = sscanf(buf,"%s",mess);
     printk( KERN_INFO "mess: %s\n",mess);    
