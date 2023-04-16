@@ -38,12 +38,10 @@ static ssize_t myread(struct file *file, char __user *ubuf,size_t count, loff_t 
 	int len=0;
 	if(*ppos > 0 || count < BUFSIZE)
 		return 0;
-	//len += sprintf(buf,"irq = %d\n",irq);
     memset(buf,0,100);
     len += sprintf(buf,"%s",mess);
 	if(copy_to_user(ubuf,buf,strlen(buf)))
 		return -EFAULT;
-    //len = strlen(mess);
     printk( KERN_INFO "len: %d\n",len);
 	*ppos = len;
 	return len;
